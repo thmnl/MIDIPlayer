@@ -63,7 +63,7 @@ def create_particles(note_pos, note):
     )
 
 
-def put_note_in_image(back, texture, x, y, alpha):
+def put_texture_in_image(back, texture, x, y, alpha):
     rows, cols, channels = texture.shape
     alpha_transparency = texture[..., 3] != 0
     overlay = back[y : y + rows, x : x + cols]
@@ -88,7 +88,7 @@ def draw_particles(image, delta):
         x2 = p.x2 + int(p.pos.z) if p.x2 + int(p.pos.z) < gui.PIANO_X else None
         alpha = p.life / (p.velocity + P_LIFE)  # life / life max
         if x1:
-            put_note_in_image(
+            put_texture_in_image(
                 image,
                 texture,
                 x1,
@@ -96,7 +96,7 @@ def draw_particles(image, delta):
                 alpha,
             )
         if x2:
-            put_note_in_image(
+            put_texture_in_image(
                 image,
                 texture,
                 x2 - texture_x,
