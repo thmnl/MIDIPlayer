@@ -1,0 +1,9 @@
+mido #midi python lib
+python-rtmidi #midi ports lib
+argparse
+pysdl2
+numpy
+opencv-python
+opencv-contrib-python
+pyglm
+pyserial
