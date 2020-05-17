@@ -8,7 +8,7 @@ import logger
 import os
 
 RESOURCES = os.path.join(os.path.dirname(__file__), "../resources/")
-P_LIFE = 10  # + velocity
+P_LIFE = 2  # + velocity
 particles = None
 colored_texture = []
 texture_x = 0
