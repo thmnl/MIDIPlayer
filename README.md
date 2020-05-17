@@ -23,6 +23,11 @@ Save it as PNG in resources, then use --particles_texture filename. (without the
 
 ![Exemple](exemple3.png)  
 
+### Serial communication
+- Send approximactivly 100 times/sec 88bits that correspond to the 88 notes of the piano. 0 is note off, 1 is note on.
+
+    `python main.py --serial YOUR_SERIAL_PORT --baudrate YOUR_BAUDRATE file.mid`
+
 ### Troubleshooting
 - The Gui is a bit laggy
 
