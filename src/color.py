@@ -32,7 +32,6 @@ GREY = [75, 75, 75, 1]
 WHITE = [255, 255, 255]
 BLACK = [0, 0, 0]
 COLOR_CHANNEL = [
-    PINK,
     SKYBLUE,
     GREEN,
     PURPLE_BLUE,
