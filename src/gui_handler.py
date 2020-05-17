@@ -32,7 +32,7 @@ class Gui(Thread):
         for note in self.notes:
             if note.is_on:
                 self.gui.particles.create_particles(self.gui.pos_list[note.id], note)
-                self.gui.draw_note(image, self.gui.pos_list[note.id], note.channel)
+                self.gui.draw_note(image, self.gui.pos_list[note.id], note)
         self.gui.draw_futurpart(image, self.futurpart, self.timecode, self.notes, tnow)
         self.gui.draw_player(image, self.length, self.timecode)
         if self.timecode < 2:

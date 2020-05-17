@@ -93,7 +93,10 @@ def draw_futurpart(image, futurpart, timecode, notes, tnow):
             t = note["time"] - timecode
             y = t / FUTUR_PART_TIME * PIANO_PIX_START
             y = PIANO_PIX_START - y
-            draw_rect(image, x, y - h, x + w, y, COLOR_CHANNEL[note["msg"].channel])
+            color = COLOR_CHANNEL[note["msg"].channel]
+            if not notes[note["msg"].note - 21].is_white:
+                color = COLOR_CHANNEL_DARK[note["msg"].channel]
+            draw_rect(image, x, y - h, x + w, y, color)
     for note in notes:
         diff = note.playuntil - tnow
         if diff <= 0:
@@ -103,7 +106,10 @@ def draw_futurpart(image, futurpart, timecode, notes, tnow):
         w = pos_list[n][-1][0] - pos_list[n][0][0] - 1
         h = diff / FUTUR_PART_TIME * (PIANO_PIX_START - 1)
         y = PIANO_PIX_START - 1
-        draw_rect(image, x, y - h, x + w, y, COLOR_CHANNEL[note.channel])
+        color = COLOR_CHANNEL[note.channel]
+        if not note.is_white:
+            color = COLOR_CHANNEL_DARK[note.channel]
+        draw_rect(image, x, y - h, x + w, y, color)
 
 
 def print_text(texte, image, x=0, y=250, alpha=1):
@@ -120,10 +126,13 @@ def draw_player(image, length, timecode):
     )
 
 
-def draw_note(image, p, channel):
+def draw_note(image, p, note):
     pts = np.array(p, np.int32)
     pts = pts.reshape((-1, 1, 2))
-    cv2.fillPoly(image, [pts], COLOR_CHANNEL[channel])
+    color = COLOR_CHANNEL[note.channel]
+    if not note.is_white:
+        color = COLOR_CHANNEL_DARK[note.channel]
+    cv2.fillPoly(image, [pts], color)
     cv2.polylines(image, [pts], True, BLACK)
 
 

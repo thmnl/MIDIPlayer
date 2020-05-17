@@ -1,6 +1,9 @@
 from threading import Thread
 import time
 
+# White note/ black note pattern
+PATTERN = [True, False, True, True, False, True, False, True, True, False, True, False]
+
 
 class Note:
     def __init__(self, id):
@@ -10,6 +13,7 @@ class Note:
         self.velocity = 0
         self.particles = None
         self.is_on = False
+        self.is_white = PATTERN[id % 12]
 
 
 class Piano(Thread):
