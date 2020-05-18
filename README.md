@@ -28,6 +28,8 @@ Save it as PNG in resources, then use --particles_texture filename. (without the
 
     `python main.py --serial YOUR_SERIAL_PORT --baudrate YOUR_BAUDRATE file.mid`
 
+    Press ` ` (space) to play/pause. You can also click on the player bar to move forward/backward.
+
 ### Troubleshooting
 - The Gui is a bit laggy
 
