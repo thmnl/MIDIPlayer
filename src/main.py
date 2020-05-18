@@ -14,13 +14,14 @@ def playing_loop(mid, p, port, gui, notes, t):
     i = 0
     modif = 0
     tstart = time.time()
+    paused = False
     while p[i]:
         tnow = time.time()
         if gui:
             #  flush the event on the main loop, you can't do it in the thread
             # if the player bar is clicked to change the moment of the music
             # i and modif will be changed and notes playuntil will be set to 0
-            modif, i = gui.get_events(p, i, length, modif, notes, port)
+            modif, i, paused = gui.get_events(p, i, length, modif, notes, port, paused)
             t.set_futurpart(part.get_futur_partition(p, i, gui.FUTUR_PART_TIME))
             t.set_timecode(tnow + modif - tstart)
         if tnow + modif > p[i]["time"] + tstart:
@@ -36,9 +37,10 @@ def playing_loop(mid, p, port, gui, notes, t):
             i += 1
             continue
         wait_time = p[i]["time"] + tstart - (tnow + modif)
-        wait_time = 0.05 if wait_time > 0.05 else wait_time
-        if wait_time > 0:
-            time.sleep(wait_time)
+        if wait_time > 0.01:
+            time.sleep(0.01)
+        if paused:
+            modif -= time.time() - tnow
 
 
 def get_port(args):

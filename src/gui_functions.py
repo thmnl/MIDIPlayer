@@ -21,7 +21,7 @@ window = None  # sdl2 window
 windowArray = None  # sdl2 pixel3d
 
 
-def set_new_index(partition, i, x, y, length, modif, notes, port):
+def set_new_index(partition, i, x, y, length, modif, notes, port, paused):
     """If the user click on the player bar,
     this function shut the music and particles, and then,
     return the new index and the modification that we need to apply to time
@@ -48,22 +48,28 @@ def set_new_index(partition, i, x, y, length, modif, notes, port):
                     note.playuntil = 0
                 if particles.particles:
                     particles.particles = []
-                return modif, l
+                return modif, l, paused
             l += 1
-    return modif, i
+    return modif, i, paused
 
 
-def get_events(partition, i, length, modif, notes, port):
+def get_events(partition, i, length, modif, notes, port, paused):
     events = sdl2.ext.get_events()
     for e in events:
         if e.type == sdl2.SDL_QUIT:
             sdl2.ext.quit()
             break
+        if e.type == sdl2.SDL_KEYDOWN:
+            if e.key.keysym.sym == 27:  # ESC
+                sdl2.ext.quit()
+                break
+            if e.key.keysym.sym == ord(" "):
+                paused = not paused  # reverse True False
         if e.type == sdl2.SDL_MOUSEBUTTONDOWN:
-            return set_new_index(
-                partition, i, e.button.x, e.button.y, length, modif, notes, port,
+            modif, i, paused = set_new_index(
+                partition, i, e.button.x, e.button.y, length, modif, notes, port, paused
             )
-    return modif, i
+    return modif, i, paused
 
 
 def draw_rect(image, x1, y1, x2, y2, color):
