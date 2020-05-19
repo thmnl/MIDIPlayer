@@ -2,6 +2,7 @@ mido #midi python lib
 python-rtmidi #midi ports lib
 argparse
 pysdl2
+pysdl2-dll
 numpy
 opencv-python
 opencv-contrib-python
