@@ -11,6 +11,8 @@
 ## Usage
 `python main.py [options ...] [midifiles ...]`
 
+Press ` ` (space) to play/pause. You can also click on the player bar to move forward/backward.
+
 ### Create a new particle texture
 - Draw the particle that you want, pure white (255, 255, 255) will be transparent,
 pure black (0,0,0) will be replaced by the channel color, and the rest will be unchanged.
@@ -27,8 +29,6 @@ Save it as PNG in resources, then use --particles_texture filename. (without the
 - Send approximactivly 100 times/sec 88bits that correspond to the 88 notes of the piano. 0 is note off, 1 is note on.
 
     `python main.py --serial YOUR_SERIAL_PORT --baudrate YOUR_BAUDRATE file.mid`
-
-    Press ` ` (space) to play/pause. You can also click on the player bar to move forward/backward.
 
 ### Troubleshooting
 - The Gui is a bit laggy
