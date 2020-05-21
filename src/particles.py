@@ -139,9 +139,9 @@ def get_note_texture(texture_str):
         colored_texture.append(colored_image.astype("uint8"))
 
 
-def init(no_particles, particles_texture):
+def init(args):
     global particles
 
-    if not no_particles:
+    if not args.no_particles:
         particles = []
-        get_note_texture(particles_texture)
+        get_note_texture(args.particles_texture)
