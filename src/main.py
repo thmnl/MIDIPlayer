@@ -82,7 +82,12 @@ def main():
         import gui_functions  # import the lib only if gui is specified
 
         gui = gui_functions
-        gui.init(args.background_image, args.background_transparency, args.window_size)
+        gui.init(
+            args.background_image,
+            args.background_transparency,
+            args.window_size,
+            args.borderless,
+        )
         gui.particles.init(
             args.no_particles, args.particles_texture,
         )

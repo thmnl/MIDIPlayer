@@ -208,7 +208,7 @@ def get_note_position(image):
     return pos_list
 
 
-def init(background_image, background_transparency, window_size):
+def init(background_image, background_transparency, window_size, borderless):
     global image_base
     global pos_list
     global windowArray
@@ -231,6 +231,9 @@ def init(background_image, background_transparency, window_size):
         alpha = background_transparency
         cv2.addWeighted(new_image, alpha, image_base, 1 - alpha, 0, image_base)
     sdl2.ext.init()
-    window = sdl2.ext.Window("Midi Vizualizer", size=(scx, scy))
+    flags = None
+    if borderless:
+        flags = sdl2.SDL_WINDOW_BORDERLESS
+    window = sdl2.ext.Window("Midi Vizualizer", size=(scx, scy), flags=flags)
     windowArray = sdl2.ext.pixels3d(window.get_surface())
     window.show()
