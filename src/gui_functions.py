@@ -208,31 +208,31 @@ def get_note_position(image):
     return pos_list
 
 
-def init(background_image, background_transparency, window_size, borderless):
+def init(args):
     global image_base
     global pos_list
     global windowArray
     global window
     global scx, scy
 
-    if window_size:
-        scx, scy = window_size[0], window_size[1]
+    if args.window_size:
+        scx, scy = args.window_size[0], args.window_size[1]
     else:
         scx, scy = 1020, 646
     image_base = cv2.imread(PIANO_PNG_PATH, cv2.IMREAD_UNCHANGED)
     pos_list = get_note_position(image_base[:, :, 0])
-    if background_image:
+    if args.background_image:
         new_image = image_base.copy()
-        b = cv2.imread(f"{RESOURCES}{background_image}.png", cv2.IMREAD_UNCHANGED)
+        b = cv2.imread(f"{RESOURCES}{args.background_image}.png", cv2.IMREAD_UNCHANGED)
         resized = cv2.resize(
             b, (PIANO_X, PIANO_PIX_START - 1), interpolation=cv2.INTER_AREA
         )
         new_image[: PIANO_PIX_START - 1, :] = resized
-        alpha = background_transparency
+        alpha = args.background_transparency
         cv2.addWeighted(new_image, alpha, image_base, 1 - alpha, 0, image_base)
     sdl2.ext.init()
     flags = None
-    if borderless:
+    if args.borderless:
         flags = sdl2.SDL_WINDOW_BORDERLESS
     window = sdl2.ext.Window("Midi Vizualizer", size=(scx, scy), flags=flags)
     windowArray = sdl2.ext.pixels3d(window.get_surface())
