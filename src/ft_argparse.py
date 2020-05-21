@@ -19,6 +19,9 @@ def get_args():
     parser.add_argument(
         "--window_size", nargs="+", type=int, help="change the window size by value x y"
     )
+    parser.add_argument(
+        "--borderless", action="store_true", help="Remove border from the window"
+    )
     parser.add_argument("--background_image", default=None)
     parser.add_argument(
         "--background_transparency",
