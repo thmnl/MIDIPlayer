@@ -4,7 +4,7 @@
 
 ## Requirements
 - **Python 3.6+**, **pip**
-- For linux : **libasound2-dev**, **libjack-dev** or something similar (alsa/jack).
+- For linux : **libasound2-dev**, **libjack-dev** or something similar (alsa/jack), **sdl2**/**python-sdl2**.
 
 ## Installation
 `pip install --user -r requirements.txt`
