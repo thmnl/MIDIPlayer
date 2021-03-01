@@ -5,6 +5,7 @@
 ## Requirements
 - **Python 3.6+**, **pip**
 - For linux : **libasound2-dev**, **libjack-dev** or something similar (alsa/jack), **sdl2**/**python-sdl2**.
+- For Windows : Microsoft Visual C++ 14.0. Get it with "Build Tools for Visual Studio": https://visualstudio.microsoft.com/downloads/
 
 ## Installation
 `pip install --user -r requirements.txt`
