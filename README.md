@@ -45,7 +45,7 @@ Save it as PNG in resources, then use --particles_texture filename. (without the
 
     Open a port with Timidity:
 
-      install a soundfond like soundfond-fluid and a Jack Audio Connection Kit
+      install a soundfond like soundfont-fluit and a Jack Audio Connection Kit
 
       install Timidity++
 
